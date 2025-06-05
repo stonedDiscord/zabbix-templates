@@ -14,7 +14,7 @@ yaml.encoding = 'utf-8'
 
 servers_data = {
     '5.0': {
-        'server': ZabbixAPI('http://localhost:8050/api_jsonrpc.php', user='Admin', password='zabbix'),
+        'server': ZabbixAPI('http://localhost:8050/api_jsonrpc.php'),
         'import_rule': {},
         'import_rule_file': '.github/workflows/import50.json',
         'max_id': 0,
@@ -22,7 +22,7 @@ servers_data = {
         'file_types': ['xml']
     },
     '5.4': {
-        'server': ZabbixAPI('http://localhost:8054/api_jsonrpc.php', user='Admin', password='zabbix'),
+        'server': ZabbixAPI('http://localhost:8054/'),
         'import_rule': {},
         'import_rule_file': '.github/workflows/import.json',
         'max_id': 0,
@@ -30,7 +30,7 @@ servers_data = {
         'file_types': ['xml', 'json', 'yaml']
     },
     '6.0': {
-        'server': ZabbixAPI('http://localhost:8060/api_jsonrpc.php', username='Admin', password='zabbix'),
+        'server': ZabbixAPI('http://localhost:8060/'),
         'import_rule': {},
         'import_rule_file': '.github/workflows/import.json',
         'max_id': 0,
@@ -38,7 +38,7 @@ servers_data = {
         'file_types': ['xml', 'json', 'yaml']
     },
     '6.4': {
-        'server': ZabbixAPI('http://localhost:8064/api_jsonrpc.php', username='Admin', password='zabbix'),
+        'server': ZabbixAPI('http://localhost:8064/'),
         'import_rule': {},
         'import_rule_file': '.github/workflows/import.json',
         'max_id': 0,
@@ -48,6 +48,7 @@ servers_data = {
 }
 
 for zabbix_server in servers_data:
+    zabbix_server.login("Admin", "zabbix")
     with open(servers_data[zabbix_server]['import_rule_file'], encoding='utf-8') as json_import:
         servers_data[zabbix_server]['import_rule'] = json.load(json_import)
         json_import.close()
