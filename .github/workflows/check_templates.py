@@ -48,7 +48,7 @@ servers_data = {
 }
 
 for zabbix_server in servers_data:
-    zabbix_server.login("Admin", "zabbix")
+    servers_data[zabbix_server]['server'].login("Admin", "zabbix")
     with open(servers_data[zabbix_server]['import_rule_file'], encoding='utf-8') as json_import:
         servers_data[zabbix_server]['import_rule'] = json.load(json_import)
         json_import.close()
