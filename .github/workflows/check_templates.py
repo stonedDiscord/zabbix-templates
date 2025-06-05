@@ -36,6 +36,14 @@ servers_data = {
         'max_id': 0,
         'export_default': 'yaml',
         'file_types': ['xml', 'json', 'yaml']
+    },
+    '6.4': {
+        'server': ZabbixAPI('http://localhost:8064/api_jsonrpc.php', user='Admin', password='zabbix'),
+        'import_rule': {},
+        'import_rule_file': '.github/workflows/import64.json',
+        'max_id': 0,
+        'export_default': 'yaml',
+        'file_types': ['xml', 'json', 'yaml']
     }
 }
 

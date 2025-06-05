@@ -103,6 +103,37 @@ jobs:
           POSTGRES_PASSWORD: zabbix
           PHP_TZ: Europe/Riga
 
+      postgres-server_640:
+        image: postgres
+        env:
+          POSTGRES_DB: zabbix
+          POSTGRES_USER: zabbix
+          POSTGRES_PASSWORD: zabbix
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      zabbix-server_640:
+        image: zabbix/zabbix-server-pgsql:6.4-alpine-latest
+        env:
+          DB_SERVER_HOST: postgres-server_640
+          POSTGRES_DB: zabbix
+          POSTGRES_USER: zabbix
+          POSTGRES_PASSWORD: zabbix
+
+      zabbix-web_640:
+        image: zabbix/zabbix-web-nginx-pgsql:6.4-alpine-latest
+        ports:
+          - "8064:8080"
+        env:
+          DB_SERVER_HOST: postgres-server_640
+          POSTGRES_DB: zabbix
+          POSTGRES_USER: zabbix
+          POSTGRES_PASSWORD: zabbix
+          PHP_TZ: Europe/Riga
+
     steps:
       - uses: actions/checkout@v2
       - name: Wait for Zabbix API
