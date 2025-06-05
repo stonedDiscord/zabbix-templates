@@ -135,7 +135,7 @@ jobs:
           PHP_TZ: Europe/Riga
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Wait for Zabbix API
         run: |
           python -m pip install py-zabbix xmltodict xmlformatter ruamel.yaml

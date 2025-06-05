@@ -24,23 +24,23 @@ servers_data = {
     '5.4': {
         'server': ZabbixAPI('http://localhost:8054/api_jsonrpc.php', user='Admin', password='zabbix'),
         'import_rule': {},
-        'import_rule_file': '.github/workflows/import54.json',
+        'import_rule_file': '.github/workflows/import.json',
         'max_id': 0,
         'export_default': 'yaml',
         'file_types': ['xml', 'json', 'yaml']
     },
     '6.0': {
-        'server': ZabbixAPI('http://localhost:8060/api_jsonrpc.php', user='Admin', password='zabbix'),
+        'server': ZabbixAPI('http://localhost:8060/api_jsonrpc.php', username='Admin', password='zabbix'),
         'import_rule': {},
-        'import_rule_file': '.github/workflows/import60.json',
+        'import_rule_file': '.github/workflows/import.json',
         'max_id': 0,
         'export_default': 'yaml',
         'file_types': ['xml', 'json', 'yaml']
     },
     '6.4': {
-        'server': ZabbixAPI('http://localhost:8064/api_jsonrpc.php', user='Admin', password='zabbix'),
+        'server': ZabbixAPI('http://localhost:8064/api_jsonrpc.php', username='Admin', password='zabbix'),
         'import_rule': {},
-        'import_rule_file': '.github/workflows/import64.json',
+        'import_rule_file': '.github/workflows/import.json',
         'max_id': 0,
         'export_default': 'yaml',
         'file_types': ['xml', 'json', 'yaml']
