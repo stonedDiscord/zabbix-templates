@@ -30,7 +30,7 @@ jobs:
           POSTGRES_USER: zabbix
           POSTGRES_PASSWORD: zabbix
 
-      zabbix-web:
+      zabbix-web_500:
         image: zabbix/zabbix-web-nginx-pgsql:5.0-alpine-latest
         ports:
           - "8050:8080"
@@ -67,6 +67,37 @@ jobs:
           - "8054:8080"
         env:
           DB_SERVER_HOST: postgres-server_540
+          POSTGRES_DB: zabbix
+          POSTGRES_USER: zabbix
+          POSTGRES_PASSWORD: zabbix
+          PHP_TZ: Europe/Riga
+
+      postgres-server_600:
+        image: postgres
+        env:
+          POSTGRES_DB: zabbix
+          POSTGRES_USER: zabbix
+          POSTGRES_PASSWORD: zabbix
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      zabbix-server_600:
+        image: zabbix/zabbix-server-pgsql:6.0-alpine-latest
+        env:
+          DB_SERVER_HOST: postgres-server_600
+          POSTGRES_DB: zabbix
+          POSTGRES_USER: zabbix
+          POSTGRES_PASSWORD: zabbix
+
+      zabbix-web_600:
+        image: zabbix/zabbix-web-nginx-pgsql:6.0-alpine-latest
+        ports:
+          - "8060:8080"
+        env:
+          DB_SERVER_HOST: postgres-server_600
           POSTGRES_DB: zabbix
           POSTGRES_USER: zabbix
           POSTGRES_PASSWORD: zabbix
